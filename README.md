@@ -13,6 +13,6 @@
 > Please **NOTE**: All additions to the base project, should be their own branch. If you see that the code is working, and are ready to ***merge*** the branch into `master`?
 >> Make a PR (pull request) for your branch to master. On [github](https://github.com/jasonkolodziej/csce445-tamu-quest), you will be able to get any one of the team members to assess the PR with the current master and **resolve** changes if needed.
 
-> Run with `python app.py`
+> Run with `FLASK_APP=app.py FLASK_ENV=development flask run`
 ## End User Notes
 ---
