@@ -21,8 +21,14 @@
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
-            <div class="section-text align-center mbr-fonts-style display-2"><strong>
-                    Answer was RIGHT/WRONG</strong></div>
+            <div class="section-text align-center mbr-fonts-style display-2">
+            <strong>
+                Answer was 
+            </strong>
+            {% for key in answerType.keys() %}
+            <strong style="color: {{ answerType[key] }};">{{ key }}</strong>
+            {% endfor %}
+            </div>
             <hr class="line" style="width: 25%;">
         </div>
         </div>

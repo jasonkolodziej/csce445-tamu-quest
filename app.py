@@ -30,9 +30,13 @@ PRODUCTS = {
 def home():
     return render_template('home.html.j2', products=PRODUCTS)
 
+COLORS = {
+    'Right' : 'green',
+    'Wrong' : 'red'
+}
 @app.route('/game')
 def game():
-    return render_template('stat_game.html.j2')
+    return render_template('stat_game.html.j2', answerType=COLORS)
 
 @app.route('/instructions')
 def instructions():
