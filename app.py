@@ -29,6 +29,14 @@ PRODUCTS = {
 @app.route('/home')
 def home():
     return render_template('home.html.j2', products=PRODUCTS)
+
+@app.route('/game')
+def game():
+    return render_template('stat_game.html.j2')
+
+@app.route('/instructions')
+def instructions():
+    return render_template('how_to_play.html.j2')
  
 @app.route('/product/<key>')
 def product(key):

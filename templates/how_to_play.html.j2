@@ -1,0 +1,20 @@
+{% extends "base.html.j2" %}
+{% block title %}How to Play?{% endblock title %}
+{% block description %}Background of Super Texas A&M Trivia and instructions on how to play.{% endblock description %}
+{% block child_container %}
+<section class="header1 cid-rQBqquDMoR mbr-fullscreen" id="header16-7">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 align-center">
+                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
+                    How to Play?
+                </h1>
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">
+                    Full width intro with adjustable height, background image and a color overlay. Click any text to edit or style it.
+                </p>
+                <div class="mbr-section-btn"><a class="btn btn-md btn-black-outline display-4" href="{{ url_for('game') }}"><span class="mobi-mbri mobi-mbri-play mbr-iconfont mbr-iconfont-btn"></span>Start Trivia</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock child_container %}

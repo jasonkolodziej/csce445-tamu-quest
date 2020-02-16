@@ -1,54 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TAMU WebQuest</title>
-    {# <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> #}
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-  </head>
-  <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" role="navigation">
-  <a class="navbar-brand" href="{{ url_for('home')}}">TAMU Quest</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      {# <li class="nav-item active">
-        <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li> #}
-    </ul>
-    {# <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form> #}
-  </div>
-</nav>
-    <div class="container">
-      {% block container %}{% endblock %}
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo.png') }}" type="image/x-icon">
+        <title>{% block title %}{% endblock %} | Super Texas A&amp;M Trivia</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='web/assets/mobirise-icons/mobirise-icons.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='web/assets/mobirise-icons2/mobirise2.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap-grid.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap-reboot.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='tether/tether.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='dropdown/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='socicon/css/styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='theme/css/style.css') }}">
+        <link rel="preload" as="style" href="{{ url_for('static',filename='mobirise/css/mbr-additional.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='mobirise/css/mbr-additional.css') }}" type="text/css">
+
+    </head>
+    <body>
+        <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
+            <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="menu-logo">
+                    <div class="navbar-brand">   
+                        <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="{{url_for('home')}}">Super Texas A&amp;M Trivia</a></span>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="{{ url_for('home') }}"><span class="mobi-mbri mobi-mbri-home mbr-iconfont mbr-iconfont-btn"></span>
+                                Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-white display-4" href="{{url_for('instructions')}}"><span class="mobi-mbri mobi-mbri-help mbr-iconfont mbr-iconfont-btn"></span>
+                                How to Play?</a>
+                        </li></ul>
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-success display-4" href="{{ url_for('game') }}"><span class="mobi-mbri mobi-mbri-play mbr-iconfont mbr-iconfont-btn"></span>
+                            Start Trivia</a></div>
+                </div>
+            </nav>
+        </section>
+        {% block child_container %}{% endblock child_container%}
+        <section class="cid-qTkAaeaxX5" id="footer1-2">
+            <div class="container">
+                <div class="media-container-row content text-white">
+                    <div class="col-12 col-md-3">
+                        <div class="media-wrap">
+                            <a href="{{ url_for('home') }}">
+                                <img src="{{ url_for('static',filename='images/logo_transparent.png') }}" alt="Mobirise">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                        <h5 class="pb-3">
+                            Members of Team STAT
+                        </h5>
+                        <p class="mbr-text">
+                            Jeslyn Duran
+                            <br>Rhonda Hollier
+                            <br>Madi Panzarella
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3 mbr-fonts-style display-7">
+                        <h5 class="pb-3">
+                        <br>
+                        </h5>
+                        <p class="mbr-text">
+                            Jason Kolodziej
+                            <br>Ben McKenzie
+                            <br>Ben Mora
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-lower">
+                    <div class="media-container-row">
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="media-container-row mbr-white">
+                        <div class="col-md-6">
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            © Copyright 2020 Team STAT - All Rights Reserved
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="{{ url_for('static',filename='web/assets/jquery/jquery.min.js') }}"> </script>
+        <script src="{{ url_for('static',filename='popper/popper.min.js') }}"> </script>
+        <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"> </script>
+        <script src="{{ url_for('static',filename='tether/tether.min.js') }}"> </script>
+        <script src="{{ url_for('static',filename='dropdown/js/nav-dropdown.js') }}"> </script>
+        <script src="{{ url_for('static',filename='dropdown/js/navbar-dropdown.js') }}"> </script>
+        <script src="{{ url_for('static',filename='touchswipe/jquery.touch-swipe.min.js') }}"> </script>
+        <script src="{{ url_for('static',filename='smoothscroll/smooth-scroll.js') }}"> </script>
+        <script src="{{ url_for('static',filename='theme/js/script.js') }}"> </script>       
+    </body>
 </html>

@@ -1,14 +1,18 @@
 {% extends 'base.html.j2' %}
- 
-{% block container %}
-  <div class="top-pad">
-    {% for id, product in products.items() %}
-      <div class="well">
-        <h2>
-          <a href="{{ url_for('product', key=id) }}">{{product['name'] }}</a>
-          <small>$ {{ product['price'] }}</small>
-        </h2>
-      </div>
-    {% endfor %}
-  </div>
-{% endblock %}
+{% block title %}Home{% endblock %}
+{% block description %}Super Texas A&M Trivia{% endblock %}
+{% block child_container %}
+<section class="mbr-fullscreen" style="background-image: url( {{ url_for('static',filename='images/swfimg-170918-12574812-6xi1h-1280x848.jpeg') }});" id="header2-1">
+    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(118, 118, 118);"></div>
+    <div class="container align-center">
+        <div class="row justify-content-md-center">
+            <div class="mbr-white col-md-10">
+                <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">HOWDY YA'LL!</h1>  
+                <p class="mbr-text pb-3 mbr-fonts-style display-5">Team <strong>STAT</strong>,<strong>&nbsp;</strong>from the <strong>College of Engineering</strong> would like to present a trivia game that centrally focuses on <strong>Texas A&amp;M University</strong>. The members of our team are currently are enrolled in <strong>CSCE 445</strong>,<strong> Computers and New Media</strong>. To test your knowledge of <strong>Texas A&amp;M</strong> click below to get started!</p>
+                <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-7" href="{{ url_for('game') }}">START TRIVIA</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock child_container %}
+
