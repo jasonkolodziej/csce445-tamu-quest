@@ -7,12 +7,15 @@
         <div class="row justify-content-md-center">
             <div class="mbr-white col-md-10">
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2">
-                    What is Texas A&amp;M?</h1>
+                    {{ prompt }}</h1>
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     This may or may not be useful as a hint area.
                 </p>
-                <div class="mbr-section-btn"><a class="btn btn-md btn-info-outline display-4" href="https://mobirise.co">Answer #1</a>
-                    <a class="btn btn-md btn-info-outline display-4" href="https://mobirise.co">Answer #2</a> <a class="btn btn-md btn-info-outline display-4" href="https://mobirise.co">Answer #3</a> <a class="btn btn-md btn-info-outline display-4" href="https://mobirise.co">Answer #4</a></div>
+                <div class="mbr-section-btn">
+                    {% for option in answer_choices%}
+                    <a class="btn btn-md btn-info-outline display-4" href="{{url_for('game', key=option)}}">{{ option }}</a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
