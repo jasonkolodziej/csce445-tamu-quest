@@ -1,6 +1,6 @@
 from flask import Flask, render_template, abort, request, session
 from flask_session import Session
-from services import STATGame, uuid_url64
+from services import STATGame, Question, uuid_url64, EXAMPLE_QUESTION_BANK as Bank
 from config import Config as C
 
 
@@ -34,7 +34,7 @@ PRODUCTS = {
         'price': 549
     }
 }
- 
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -49,20 +49,36 @@ COLORS = {
 @app.route('/game')
 @app.route('/game/<key>')
 def game(key=None):
-    # if request.method == 'POST':
+    current_game = None
 
-    # if 'game_id' in session:
-    #     # find the game object in the DB
-    #     pass
-    # else:
-    #     # this is a new game
-    #     session['game_id'] = uuid_url64();
-        # create class
-        # store in DB
-        # render the options for the user
-    if key is not None:
-        print(key)
-    return render_template('stat_game.html.j2', prompt=STATGame.level_selector_prompt(), answer_choices=STATGame.level_types(), answerType=COLORS)
+    # try getting the session
+    try:
+        for k, v in session.items():
+            print(f"session key: {k}, session value : {v}")
+        # if 'game_id' in session:
+        current_game = session['stat_game']
+        current_game = STATGame.from_redis(current_game) if current_game else None
+
+    # new session
+    except KeyError as k:
+        # start a new session
+        current_game = STATGame(uuid_url64())
+        # add the prompts of game selection
+        current_game.new_game()
+        print(f"Session not found, generating new session for user. as {current_game}")
+    # on the current game being found
+    else:
+        print(f"current_game is : {current_game}")
+        if key is not None:
+            print('',key, '')
+            # resolve the user's selection
+            current_game.resolve_user_choice(key, Bank)
+    finally:
+        # tell redis of the game session
+        print(f"telling redis game is : {current_game.to_redis()}")
+        print(f"telling user game is : {current_game.to_user()}")
+        session['stat_game'] = current_game.to_redis()
+        return render_template('stat_game.html.j2', game=current_game.to_user())
 
 
 @app.route('/instructions')

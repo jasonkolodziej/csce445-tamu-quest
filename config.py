@@ -9,7 +9,8 @@ class Config:
     # General Config
     SECRET_KEY = 'r985l9ArEaKg&esQ&R3!Dm2@Q$hOVV7&$gHpwU' # environ.get('SECRET_KEY')
     FLASK_APP = 'app.py'
-    FLASK_ENV = 'development'# environ.get('FLASK_APP')
+    FLASK_ENV = 'development' # environ.get('FLASK_APP')
+    DEBUG = True
     # FLASK_ENV = # environ.get('FLASK_ENV')
 
     # Flask-Session

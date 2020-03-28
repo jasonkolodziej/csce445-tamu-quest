@@ -7,13 +7,13 @@
         <div class="row justify-content-md-center">
             <div class="mbr-white col-md-10">
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2">
-                    {{ prompt }}</h1>
+                    {{ game['next_question']['question'] }}</h1>
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     This may or may not be useful as a hint area.
                 </p>
                 <div class="mbr-section-btn">
-                    {% for option in answer_choices%}
-                    <a class="btn btn-md btn-info-outline display-4" href="{{url_for('game', key=option)}}">{{ option }}</a>
+                    {% for option_val in range(game['next_question']['answer_choices']|length) %}
+                    <a class="btn btn-md btn-info-outline display-4" href="{{url_for('game', key=option_val)}}">{{ game['next_question']['answer_choices'][option_val] }}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -21,6 +21,7 @@
     </div>
 </section>
 <section class="mbr-section article content9 cid-rQBAwKLiza" id="content9-j">
+{% if game['next_question']['good'] is not none %}
     <div class="container">
         <div class="inner-container" style="width: 100%;">
             <hr class="line" style="width: 25%;">
@@ -28,20 +29,31 @@
             <strong>
                 Answer was 
             </strong>
-            {% for key in answerType.keys() %}
-            <strong style="color: {{ answerType[key] }};">{{ key }}</strong>
-            {% endfor %}
+            {% if game['next_question']['good'] %}
+                <strong style="color: green;">correct.</strong>
+            {% else %}
+                <strong style="color: red;">incorrect.</strong>
+            {% endif %}
             </div>
             <hr class="line" style="width: 25%;">
         </div>
-        </div>
+    </div>
+{% else %}
+{% endif %}
+
 </section>
 <section class="mbr-section content8 cid-rQBzIGP5gw" id="content8-g">
     <div class="container">
         <div class="media-container-row title">
             <div class="col-12 col-md-8">
-                <div class="mbr-section-btn align-center"><a class="btn btn-primary display-4" href="https://mobirise.co"><span class="mobi-mbri mobi-mbri-close mbr-iconfont mbr-iconfont-btn"></span>Q-Drop</a>
-                    <a class="btn btn-warning display-4" href="https://mobirise.co"><span class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"></span>Next Question</a></div>
+                <div class="mbr-section-btn align-center">
+                {% if game['level'] is not none %}
+                    <a class="btn btn-primary display-4" href="{{url_for('game', key='qdrop')}}"><span class="mobi-mbri mobi-mbri-close mbr-iconfont mbr-iconfont-btn"></span>Q-Drop</a>
+                {% endif %}
+                    {% if game['next_question']['good'] is not none %}
+                        <a class="btn btn-warning display-4" href="{{url_for('game', key='nxtq')}}"><span class="mobi-mbri mobi-mbri-right mbr-iconfont mbr-iconfont-btn"></span>Next Question</a></div>
+                    {% endif %}
+                    
             </div>
         </div>
     </div>
@@ -52,15 +64,14 @@
             <div class="progress1 pb-5">
                 <div class="title-wrap">
                     <div class="progressbar-title mbr-fonts-style display-5">
-                        <p>
-                            Overall Status</p>
+                        <p>Overall Status</p>
                     </div>
                     <div class="progress_value mbr-fonts-style display-7">
-                        <div class="progressbar-number"></div>
-                        <span>%</span>
+                        {# <div class="progressbar-number">{{game['progress']}}</div> #}
+                        <span>{{game['progress']}}%</span>
                     </div>
                 </div>
-                <progress class="progress progress-primary" max="100" value="70">
+                <progress class="progress progress-primary" max="100" value="{{game['progress']}}">
                 </progress>
             </div>
         </div>
