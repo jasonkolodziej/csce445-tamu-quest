@@ -1,0 +1,167 @@
+[
+ {
+   "question": "Where is the giant pendulum on campus?",
+   "answer": "Mitchell Physics Building",
+   "answer_choices": [
+      "Mitchell Physics Building",
+      "Mitchell Physics Undergraduate Building",
+      "Chemistry Building",
+      "Zachry Engineering Building"
+   ],
+   "fun_facts": "This pendulum swings freely and is moved by the rotation of the Earth."
+},
+ {
+   "question": "Where can you find George R.R Martin manuscripts of Game of Thrones?",
+   "answer": "Cushing Memorial Library",
+   "answer_choices": [
+      "Cushing Memorial Library",
+      "Evans Library",
+      "Medical Sciences Library",
+      "West Campus Library"
+   ],
+   "fun_facts": "This library hosts historical artifacts and rotating exhibits. Check out their website to figure out what they have on display now."
+},
+ {
+   "question": "What is the oldest tree on campus?",
+   "answer": "Century Tree",
+   "answer_choices": [
+      "Century Tree",
+      "Decade Tree",
+      "Millenial Tree",
+      "Tree of the Ages"
+   ],
+   "fun_facts": "Considered one of the most romantic places on campus, Aggie couples have been getting engaged under this tree for decades. "
+},
+ {
+   "question": "Which U.S. President is buried near campus?",
+   "answer": "George H. W. Bush",
+   "answer_choices": [
+      "George H. W. Bush",
+      "Lyndon Baynes Johnson",
+      "George W. Bush",
+      "Dwight D. Eisenhower"
+   ],
+   "fun_facts": "He and his wife were buried within 4 months of each other."
+},
+ {
+   "question": "Texas A&M has a football team member that stays ready to help his teammates, what is he called?",
+   "answer": "12th Man",
+   "answer_choices": [
+      "12th Man",
+      "The Other Man",
+      "Lieutenant Dan",
+      "2nd Man"
+   ],
+   "fun_facts": "Now, the student body carries on his spirit by standing for the entirety of our football games."
+},
+ {
+   "question": "What is the name of Texas A&M’s mascot?",
+   "answer": "Reveille",
+   "answer_choices": [
+      "Reveille",
+      "Bevo",
+      "The Masked Raider",
+      "Uga"
+   ],
+   "fun_facts": "The tradition of having a dog for our mascot started in 1931 when a dog was adopted by the Corps of Cadets."
+},
+ {
+   "question": "What is the commonly placed item at the base of Sully's statue before an exam?",
+   "answer": "A penny",
+   "answer_choices": [
+      "A penny",
+      "A quarter",
+      "A notecard",
+      "A piece of gum"
+   ],
+   "fun_facts": "When Sullivent Ross was president, he would leave his office door open, welcoming students with \"a penny for your thoughts.\""
+},
+ {
+   "question": "In honor of the fallen aggies who have passed, our monthly tradition is to come together during which event?",
+   "answer": "SilverTaps",
+   "answer_choices": [
+      "SilverTaps",
+      "Fallen Aggies",
+      "Golden Taps",
+      "Aggie Muster"
+   ],
+   "fun_facts": ""
+},
+ {
+   "question": "Who should you call, if you have a question about you transcript",
+   "answer": "979 845 1066",
+   "answer_choices": [
+      "979 845 1066",
+      "911",
+      "979 845 3236",
+      "979 458 8310"
+   ],
+   "fun_facts": ""
+},
+ {
+   "question": "What year student is the handler of Reveille?",
+   "answer": "Sophomore",
+   "answer_choices": [
+      "Sophomore",
+      "Freshman",
+      "Junior",
+      "Senior"
+   ],
+   "fun_facts": ""
+},
+ {
+   "question": "What year was the first female handler elected?",
+   "answer": "2018",
+   "answer_choices": [
+      "2018",
+      "2017",
+      "2019",
+      "2020"
+   ],
+   "fun_facts": ""
+},
+ {
+   "question": "Where can you go on campus, if you issues with your technology, or need to buy new technology?",
+   "answer": "12th Man Technology",
+   "answer_choices": [
+      "12th Man Technology",
+      "Zachary",
+      "ETB Building",
+      "Best Buy"
+   ],
+   "fun_facts": ""
+},
+ {
+   "question": "What is the number for getting a Corp Escort?",
+   "answer": "979 845 6789",
+   "answer_choices": [
+      "979 845 6789",
+      "979 458 8250",
+      "979 845 2345",
+      "979 845 8300"
+   ],
+   "fun_facts": ""
+},
+ {
+   "question": "Which Reveille was the first full-blooded Rough Collie?",
+   "answer": "III",
+   "answer_choices": [
+      "III",
+      "II",
+      "I",
+      "IV"
+   ],
+   "fun_facts": ""
+},
+ {
+   "question": "Where can you get your textbooks?",
+   "answer": "Barnes and Noble - MSC",
+   "answer_choices": [
+      "Barnes and Noble - MSC",
+      "Cushing Library",
+      "Zachary",
+      "Bright Building"
+   ],
+   "fun_facts": ""
+}
+]

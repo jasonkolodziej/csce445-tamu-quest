@@ -1,6 +1,6 @@
 from flask import Flask, render_template, abort, request, session
 from flask_session import Session
-from services import STATGame, Question, uuid_url64, EXAMPLE_QUESTION_BANK as Bank
+from services import STATGame, Question, uuid_url64, QUESTION_BANK as Bank
 from config import Config as C
 
 

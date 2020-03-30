@@ -1,37 +1,43 @@
 import re
 import uuid
 import base64
+import json
 
 
-# example of a Question
-Q_EXAMPLE_1 = {
-    "question": "What state are you in?",
-    "answer_choices": ['Texas', 'California', 'Tennessee', 'New Jersey'],
-    "answer" : "Texas"
-}
+# # example of a Question
+# Q_EXAMPLE_1 = {
+#     "question": "What state are you in?",
+#     "answer_choices": ['Texas', 'California', 'Tennessee', 'New Jersey'],
+#     "answer" : "Texas"
+# }
 
-Q_EXAMPLE_2 = {
-    "question": "What city are you in?",
-    "answer_choices": ['CStat', 'Houston', 'San Francisco', 'New York'],
-    "answer" : "CStat"
-}
+# Q_EXAMPLE_2 = {
+#     "question": "What city are you in?",
+#     "answer_choices": ['CStat', 'Houston', 'San Francisco', 'New York'],
+#     "answer" : "CStat"
+# }
 
-Q_EXAMPLE_3 = {
-    "question": "What is the team name are you in?",
-    "answer_choices": ['TeamSTAT', 'Poth Pirates', 'team6ix', 'other'],
-    "answer" : "TeamSTAT"
-}
+# Q_EXAMPLE_3 = {
+#     "question": "What is the team name are you in?",
+#     "answer_choices": ['TeamSTAT', 'Poth Pirates', 'team6ix', 'other'],
+#     "answer" : "TeamSTAT"
+# }
 
-EXAMPLE_Q_LIST = [Q_EXAMPLE_1, Q_EXAMPLE_2, Q_EXAMPLE_3]
+# EXAMPLE_Q_LIST = [Q_EXAMPLE_1, Q_EXAMPLE_2, Q_EXAMPLE_3]
+JSON_QUESTION_LIST = []
+with open('./questions.json','r') as f:
+    JSON_QUESTION_LIST = json.load(f)
+    print(JSON_QUESTION_LIST)
+
 
 # example of a map that would be loaded given the app is running
-EXAMPLE_QUESTION_BANK = {}
+QUESTION_BANK = {}
 
 # see last line of loading the questions list in the bank
 
 class Question(object):
     # initializer
-    def __init__(self, uid='', q=None, answer_choices=None, answer=None, good=None):
+    def __init__(self, uid='', q=None, answer_choices=None, answer=None, good=None, fun_facts = ''):
         self.uid = uid
         self.question = q
         self.answer_choices = answer_choices
@@ -39,18 +45,24 @@ class Question(object):
         # correct answer to the question
         self.answer = answer
         self.good = good
+        self.fun_facts = fun_facts
 
     def to_user(self):
+        import random
         """
             how a question and the data belonging to
             it should be represented to the user
         """
+        # randomize how user sees the answers
+        rand_list = self.answer_choices
+        random.shuffle(rand_list)
         return {
             'question': self.question,
             # array of strings to choose from
-            'answer_choices' : self.answer_choices,
+            'answer_choices' : rand_list,
             # determines if answer was right or wrong
-            'good' : self.good
+            'good' : self.good,
+            'fun_facts' : self.fun_facts
         }
     
     def to_redis(self):
@@ -92,18 +104,20 @@ class Question(object):
                 uuid,
                 q=q_d['question'],
                 answer_choices=q_d['answer_choices'],
-                answer=q_d['answer']
+                answer=q_d['answer'],
+                fun_facts=q_d['fun_facts']
                 )
         return final_dict
 
 
     def __repr__(self):
-        return u'Question ( uid={}, question={}, answer_choices={}, answer(s)={}, good={} )'.format(
+        return u'Question ( uid={}, question={}, answer_choices={}, answer(s)={}, good={}, fun_facts={} )'.format(
             self.uid,
             self.question,
             self.answer_choices,
             self.answer,
-            self.good
+            self.good,
+            self.fun_facts
         )
     
     def __eq__(self, user):
@@ -203,6 +217,7 @@ class STATGame(object):
             self.q_dropped.append(self.next_question.uid)
             self.load_next_question_from_bank(question_bank)
             # TODO: handle max q drops
+            # TODO: handle if nxtq gets called concurrently
         elif u_sent == 'nxtq':
             # user wants the next question
             print("attempting next question")
@@ -260,11 +275,11 @@ def uuid_url64():
 
 
 
-EXAMPLE_QUESTION_BANK = Question.load_questions(EXAMPLE_Q_LIST, EXAMPLE_QUESTION_BANK)
+QUESTION_BANK = Question.load_questions(JSON_QUESTION_LIST, QUESTION_BANK)
 
 print("Questions loaded:")
 print("*"*20)
-for idd, q in EXAMPLE_QUESTION_BANK.items():
+for idd, q in QUESTION_BANK.items():
     print(q)
 print("*"*20)
 

@@ -9,7 +9,7 @@
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2">
                     {{ game['next_question']['question'] }}</h1>
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                    This may or may not be useful as a hint area.
+                    {{ game['next_question']['fun_facts'] }}
                 </p>
                 <div class="mbr-section-btn">
                     {% for option_val in range(game['next_question']['answer_choices']|length) %}
