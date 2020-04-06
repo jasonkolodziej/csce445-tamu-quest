@@ -217,11 +217,15 @@ class STATGame(object):
             self.q_dropped.append(self.next_question.uid)
             self.load_next_question_from_bank(question_bank)
             # TODO: handle max q drops
-            # TODO: handle if nxtq gets called concurrently
         elif u_sent == 'nxtq':
             # user wants the next question
-            print("attempting next question")
-            self.load_next_question_from_bank(question_bank)
+            if len(self.next_question.answer_choices) == 0:
+                print("attempting next question")
+                self.load_next_question_from_bank(question_bank)
+            else:
+                print("*"*20)
+                print("Cannot run next question")
+                print("*"*20)
         else:
             user = Question(answer=int(u_sent))
             # ! NOTE: this is the only way you are able to
