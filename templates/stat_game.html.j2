@@ -6,8 +6,14 @@
     <div class="container align-center">
         <div class="row justify-content-md-center">
             <div class="mbr-white col-md-10">
+                {% if game['next_question']['good'] is none and game['next_question']['fun_facts'] == ''%}
+                <img src="{{ url_for('static',filename='images/questionowl.png') }}" height="80" width="80"/>
+                {% endif %}
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2">
                     {{ game['next_question']['question'] }}</h1>
+                {% if game['next_question']['good'] is none and game['next_question']['fun_facts'] != '' %}
+                <img src="{{ url_for('static',filename='images/lightbulbowl.png') }}" height="80" width="80"/>
+                {% endif %}
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     {{ game['next_question']['fun_facts'] }}
                 </p>
@@ -31,8 +37,10 @@
             </strong>
             {% if game['next_question']['good'] %}
                 <strong style="color: green;">correct.</strong>
+                <img src="{{ url_for('static',filename='images/happyowl.png') }}" height="80" width="80"/>
             {% else %}
                 <strong style="color: red;">incorrect.</strong>
+                <img src="{{ url_for('static',filename='images/sadowl.png') }}" height="80" width="80"/>
             {% endif %}
             </div>
             <hr class="line" style="width: 25%;">
