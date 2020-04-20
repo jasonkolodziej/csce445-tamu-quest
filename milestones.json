@@ -1,0 +1,34 @@
+[
+    {
+        "name" : "Muster",
+        "announcement": "Pay your respects!",
+        "quote": "Muster is the Texas A&M tradition that forever unites the Aggies past with the Aggies present. It is Texas A&M’s most solemn and most visible tradition.",
+        "learn_more": "https://www.tamu.edu/traditions/remembrance/muster/index.html",
+        "occurs" : [""],
+        "photo_name": "muster.jpg"
+    },
+    {
+        "name" : "Ring Day",
+        "announcement": "Shine bright like a diamond.",
+        "quote": "Traditionally, students wear the Ring with the class year facing them to signify that their time at A&M is not yet complete. During commencement ceremonies, The Association of Former Students leads a ceremony in which Aggies students turn their Rings around to face the world proudly, just as the Aggie graduate is now ready to face the world.",
+        "learn_more": "https://www.tamu.edu/traditions/aggie-culture/aggie-ring/",
+        "occurs" : [""],
+        "photo_name": "ringday.png"
+    },
+    {
+        "name" : "Elephant Walk",
+        "announcement": "Get ready to march!",
+        "quote": "Held annually prior to the last regularly scheduled home football game as an event sponsored by Class Councils, Elephant Walk marks the end of the usefulness of the Aggie seniors to the student body. During the symbolic nighttime walk through campus, thousands of seniors join hands and wander through campus, stopping to hear speakers at signature campus landmarks.",
+        "learn_more": "https://www.tamu.edu/traditions/aggie-culture/elephant-walk/",
+        "occurs" : [""],
+        "photo_name": "elephantwalk.jpg"
+    },
+    {
+        "name" : "Game Day",
+        "announcement": "Yelp, Scream, and Shout!",
+        "quote": "Aggies don't cheer — they yell. And instead of cheerleaders, you'll see yell leaders dressed all in white on the sidelines directing Aggies in carefully orchestrated yells.",
+        "learn_more": "https://www.tamu.edu/traditions/gameday/",
+        "occurs" : [""],
+        "photo_name": "gameday.jpg"
+    }
+]

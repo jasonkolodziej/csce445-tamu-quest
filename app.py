@@ -1,6 +1,6 @@
-from flask import Flask, render_template, abort, request, session
+from flask import Flask, render_template, abort, request, session, url_for, redirect
 from flask_session import Session
-from services import STATGame, Question, uuid_url64, QUESTION_BANK as Bank
+from services import STATGame, Question, uuid_url64, MILESTONE_BANK as Milestones, QUESTION_BANK as Bank
 from config import Config as C
 
 
@@ -12,45 +12,16 @@ sess.init_app(app)
 
 redis_session = C.SESSION_REDIS
 
-PRODUCTS = {
-    'iphone': {
-        'name': 'iPhone 5S',
-        'category': 'Phones',
-        'price': 699,
-    },
-    'galaxy': {
-        'name': 'Samsung Galaxy 5',
-        'category': 'Phones',
-        'price': 649,
-    },
-    'ipad-air': {
-        'name': 'iPad Air',
-        'category': 'Tablets',
-        'price': 649,
-    },
-    'ipad-mini': {
-        'name': 'iPad Mini',
-        'category': 'Tablets',
-        'price': 549
-    }
-}
-
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html.j2', products=PRODUCTS)
-
-COLORS = {
-    'Right' : 'green',
-    'Wrong' : 'red'
-}
-
+    return render_template('home.html.j2')
 
 @app.route('/game')
 @app.route('/game/<key>')
 def game(key=None):
     current_game = None
-
+    randomize_answers = True
     # try getting the session
     try:
         for k, v in session.items():
@@ -65,6 +36,7 @@ def game(key=None):
         current_game = STATGame(uuid_url64())
         # add the prompts of game selection
         current_game.new_game()
+        randomize_answers = False
         print(f"Session not found, generating new session for user. as {current_game}")
     # on the current game being found
     else:
@@ -72,25 +44,25 @@ def game(key=None):
         if key is not None:
             print('',key, '')
             # resolve the user's selection
-            current_game.resolve_user_choice(key, Bank)
+            # TODO: add more relevant logic for milestones in
+            current_game.resolve_user_choice(key, Bank, Milestones)
+
     finally:
         # tell redis of the game session
         print(f"telling redis game is : {current_game.to_redis()}")
-        print(f"telling user game is : {current_game.to_user()}")
+        print(f"telling user game is : {current_game.to_user(randomize=randomize_answers)}")
         session['stat_game'] = current_game.to_redis()
-        return render_template('stat_game.html.j2', game=current_game.to_user())
+        if current_game.next_milestone:
+            print('*='*20)
+            print("rendering milestone for user")
+            print('=*'*20)
+            return render_template('milestone.html.j2', milestone=current_game.next_milestone.to_user(), game=current_game.to_user(randomize=randomize_answers))
+        return render_template('stat_game.html.j2', game=current_game.to_user(randomize=randomize_answers))
 
 
 @app.route('/instructions')
 def instructions():
     return render_template('how_to_play.html.j2')
- 
-@app.route('/product/<key>')
-def product(key):
-    product = PRODUCTS.get(key)
-    if not product:
-        abort(404)
-    return render_template('game.html.j2', product=product)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
